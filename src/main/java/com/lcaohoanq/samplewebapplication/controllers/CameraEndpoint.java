@@ -6,32 +6,53 @@ import com.lcaohoanq.samplewebapplication.services.ICameraService;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.Endpoint;
 import com.vaadin.hilla.Nonnull;
+import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @Endpoint
 @AnonymousAllowed
 @RequiredArgsConstructor
+@RestController
+@RequestMapping("/cameras")
 public class CameraEndpoint {
     private final ICameraService cameraService;
 
+    @GetMapping("")
     public List<Camera> findAll() {
         return cameraService.findAll();
     }
 
-    public Camera save(@Nonnull Camera camera) {
+    @PostMapping("")
+    public Camera save(
+      @Valid @RequestBody @Nonnull Camera camera) {
         return cameraService.save(camera);
     }
 
-    public void delete(@Nonnull Long id) {
+    @DeleteMapping("/{id}")
+    public void delete(
+      @PathVariable @Nonnull Long id) {
         cameraService.delete(id);
     }
 
-    public Camera findById(@Nonnull Long id) {
+    @GetMapping("/{id}")
+    public Camera findById(
+      @PathVariable @Nonnull Long id) {
         return cameraService.findById(id);
     }
 
-    public Camera update(@Nonnull Long id, @Nonnull CameraDTO cameraDTO) {
+    @PutMapping("/{id}")
+    public Camera update(
+      @PathVariable @Nonnull Long id,
+      @Valid @RequestBody @Nonnull CameraDTO cameraDTO) {
         return cameraService.update(id, cameraDTO);
     }
 
