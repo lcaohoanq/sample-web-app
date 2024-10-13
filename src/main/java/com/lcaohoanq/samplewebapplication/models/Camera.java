@@ -24,5 +24,7 @@ public class Camera {
     private Long id;
     private String brand;
     private String model;
+    private String description;
+    private String thumbnail;
     private Double price;
 }

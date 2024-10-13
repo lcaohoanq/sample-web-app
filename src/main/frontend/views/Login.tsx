@@ -1,24 +1,31 @@
-import { useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { login as loginService } from 'Frontend/generated/LoginEndpoint.js';
-import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
-import { TextField, Button, Box, Typography, Alert } from '@mui/material';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import {useNavigate} from "react-router-dom";
+import { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { login as loginService } from "Frontend/generated/LoginEndpoint.js";
+import { ViewConfig } from "@vaadin/hilla-file-router/types.js";
+import { TextField, Button, Box, Typography, Alert } from "@mui/material";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
-export const config: ViewConfig = { menu: { order: 1, icon: 'line-awesome/svg/file.svg' }, title: 'Login' };
+export const config: ViewConfig = {
+    menu: { order: 1, icon: "line-awesome/svg/file.svg" },
+    title: "Login",
+};
 
 // Define the validation schema using Yup
 const schema = yup.object().shape({
-    username: yup.string().required('Username is required'),
-    password: yup.string().required('Password is required'),
+    username: yup.string().required("Username is required"),
+    password: yup.string().required("Password is required"),
 });
 
 export default function LoginView() {
-    const { control, handleSubmit, formState: { errors } } = useForm({
+    const {
+        control,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
         resolver: yupResolver(schema),
     });
     const [error, setError] = useState<string | null>(null);
@@ -33,14 +40,14 @@ export default function LoginView() {
             if (user) {
                 toast.success(`Welcome, ${user.user_name}!`);
                 setTimeout(() => {
-                    navigate('/Home');
+                    navigate("/Home");
                 }, 3000);
             } else {
-                toast.error('Login failed. Please check your credentials.');
+                toast.error("Login failed. Please check your credentials.");
                 // setError('Login failed. Please check your credentials.');
             }
         } catch (err) {
-            toast.error('An error occurred during login. Please try again.');
+            toast.error("An error occurred during login. Please try again.");
             // setError('An error occurred during login. Please try again.');
         }
     };
@@ -49,11 +56,11 @@ export default function LoginView() {
         <div className="flex flex-col justify-center items-center">
             <Box
                 sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    height: '100vh',
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: "100vh",
                     p: 2,
                 }}
             >
@@ -61,17 +68,21 @@ export default function LoginView() {
                     Login
                 </Typography>
 
-                {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
+                {error && (
+                    <Alert severity="error" sx={{ mb: 2 }}>
+                        {error}
+                    </Alert>
+                )}
 
                 <Box
                     component="form"
                     onSubmit={handleSubmit(onSubmit)}
                     sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
+                        display: "flex",
+                        flexDirection: "column",
                         gap: 2,
-                        width: '100%',
-                        maxWidth: '400px',
+                        width: "100%",
+                        maxWidth: "400px",
                     }}
                 >
                     <Controller
@@ -107,7 +118,12 @@ export default function LoginView() {
                         )}
                     />
 
-                    <Button type="submit" variant="contained" color="primary" fullWidth>
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        fullWidth
+                    >
                         Login
                     </Button>
                 </Box>

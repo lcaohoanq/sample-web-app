@@ -15,6 +15,12 @@ public record CameraDTO(
     @JsonProperty("model")
     String model,
 
+    @JsonProperty("description")
+    String description,
+
+    @JsonProperty("thumbnail")
+    String thumbnail,
+
     @Positive(message = "Price must be greater than 0")
     @Min(value = 1, message = "Price must be greater than 0")
     @NotBlank(message = "Price is required")

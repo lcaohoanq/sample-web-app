@@ -1,58 +1,83 @@
-import {useState} from 'react';
-import {Controller, useForm} from 'react-hook-form';
-import {yupResolver} from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import {register as registerService} from 'Frontend/generated/RegisterEndpoint.js'; // Use register from RegisterEndpoint
-import {ViewConfig} from '@vaadin/hilla-file-router/types.js';
-import {Alert, Box, Button, TextField, Typography} from '@mui/material';
-import {toast, ToastContainer} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import {useNavigate} from "react-router-dom";
+import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { register as registerService } from "Frontend/generated/RegisterEndpoint.js"; // Use register from RegisterEndpoint
+import { ViewConfig } from "@vaadin/hilla-file-router/types.js";
+import { Alert, Box, Button, TextField, Typography } from "@mui/material";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
-export const config: ViewConfig = { menu: { order: 2, icon: 'line-awesome/svg/file.svg' }, title: 'Register' };
+export const config: ViewConfig = {
+    menu: { order: 2, icon: "line-awesome/svg/file.svg" },
+    title: "Register",
+};
 
 // Define the validation schema using Yup
 const schema = yup.object().shape({
-    username: yup.string().required('Username is required'),
-    email: yup.string().email('Invalid email format').required('Email is required'),
-    password: yup.string().required('Password is required').min(6, 'Password must be at least 6 characters'),
+    username: yup.string().required("Username is required"),
+    email: yup
+        .string()
+        .email("Invalid email format")
+        .required("Email is required"),
+    password: yup
+        .string()
+        .required("Password is required")
+        .min(6, "Password must be at least 6 characters"),
 });
 
 export default function RegisterView() {
-    const { control, handleSubmit, formState: { errors } } = useForm({
+    const {
+        control,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
         resolver: yupResolver(schema),
     });
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
 
     // Function to handle form submission
-    const onSubmit = async (data: { username: string; email: string; password: string }) => {
+    const onSubmit = async (data: {
+        username: string;
+        email: string;
+        password: string;
+    }) => {
         setError(null);
 
         try {
-            const user = await registerService({ user_name: data.username, email: data.email, password: data.password });
+            const user = await registerService({
+                user_name: data.username,
+                email: data.email,
+                password: data.password,
+            });
 
             if (user) {
-                toast.success(`Registration successful, welcome ${user.user_name}!`);
+                toast.success(
+                    `Registration successful, welcome ${user.user_name}!`,
+                );
                 setTimeout(() => {
-                    navigate('/Login');
+                    navigate("/Login");
                 }, 2000);
             } else {
-                setError('Registration failed. Please try again.');
+                setError("Registration failed. Please try again.");
             }
         } catch (err) {
-            setError('An error occurred during registration. Please try again.');
+            setError(
+                "An error occurred during registration. Please try again.",
+            );
         }
     };
 
     return (
         <Box
             sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '100vh',
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100vh",
                 p: 2,
             }}
         >
@@ -61,17 +86,21 @@ export default function RegisterView() {
             </Typography>
 
             {/* Display error message */}
-            {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
+            {error && (
+                <Alert severity="error" sx={{ mb: 2 }}>
+                    {error}
+                </Alert>
+            )}
 
             <Box
                 component="form"
                 onSubmit={handleSubmit(onSubmit)}
                 sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
+                    display: "flex",
+                    flexDirection: "column",
                     gap: 2,
-                    width: '100%',
-                    maxWidth: '400px',
+                    width: "100%",
+                    maxWidth: "400px",
                 }}
             >
                 {/* Username Field */}
@@ -127,7 +156,12 @@ export default function RegisterView() {
                 />
 
                 {/* Submit Button */}
-                <Button type="submit" variant="contained" color="primary" fullWidth>
+                <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                >
                     Register
                 </Button>
             </Box>

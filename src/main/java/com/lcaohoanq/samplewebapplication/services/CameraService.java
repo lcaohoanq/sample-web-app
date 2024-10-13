@@ -44,6 +44,8 @@ public class CameraService implements ICameraService {
         Camera camera = findById(id);
         camera.setBrand(cameraDTO.brand());
         camera.setModel(cameraDTO.model());
+        camera.setDescription(cameraDTO.description());
+        camera.setThumbnail(cameraDTO.thumbnail());
         camera.setPrice(cameraDTO.price());
         log.info("Updating camera: {}", camera);
         return repository.save(camera);

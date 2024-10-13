@@ -1,11 +1,11 @@
-import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 
-const root = createRoot(document.getElementById('outlet')!);
+const root = createRoot(document.getElementById("outlet")!);
 root.render(
     <BrowserRouter>
         <App />
-    </BrowserRouter>
+    </BrowserRouter>,
 );
 
 import App from "Frontend/App";

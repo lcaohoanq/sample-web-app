@@ -1,13 +1,16 @@
-import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
+import { ViewConfig } from "@vaadin/hilla-file-router/types.js";
+import React from "react";
 
-export const config: ViewConfig = { menu: { order: 3, icon: 'line-awesome/svg/file.svg' }, title: 'Product' };
+export const config: ViewConfig = {
+    menu: { order: 3, icon: "line-awesome/svg/file.svg" },
+    title: "My Cart",
+};
 
-export default function CartView() {
-  return (
-    <div className="flex flex-col h-full items-center justify-center p-l text-center box-border">
-      <img style={{ width: '200px' }} src="images/empty-plant.png" />
-      <h2>This place intentionally left empty</h2>
-      <p>It’s a place where you can grow your own UI 🤗</p>
-    </div>
-  );
-}
+const CartView: React.FC = () => {
+    return (
+        <div>
+            <h1>Cart</h1>
+        </div>
+    );
+};
+export default CartView;
