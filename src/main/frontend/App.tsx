@@ -7,6 +7,8 @@ import RegisterView from "Frontend/views/Register";
 import HomeView from "Frontend/views/Home";
 import CartDetailView from "Frontend/views/CartDetailView";
 import { ToastContainer } from "react-toastify";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Logout from "./views/Logout";
 // Import other views as needed
 
 const App: React.FC = () => {
@@ -18,6 +20,11 @@ const App: React.FC = () => {
             <Route path="/register" element={<RegisterView />} />
             <Route path="/cart" element={<CameraManagement />} />
             <Route path="/cart/:id" element={<CartDetailView />} />
+            <Route element={<ProtectedRoute/>}>
+              <Route path="/camera_management" element={<CameraManagement />} />
+              <Route path="/logout" element={<Logout />} />
+            </Route>
+
             <ToastContainer />
         </Routes>
     );

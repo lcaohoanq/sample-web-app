@@ -8,6 +8,7 @@ import { TextField, Button, Box, Typography, Alert } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { setCookie } from "Frontend/utils/cookiesUtils";
 
 export const config: ViewConfig = {
     menu: { order: 1, icon: "line-awesome/svg/file.svg" },
@@ -39,6 +40,7 @@ export default function LoginView() {
 
             if (user) {
                 toast.success(`Welcome, ${user.user_name}!`);
+                setCookie("access_token", "access_token", 1);
                 setTimeout(() => {
                     navigate("/Home");
                 }, 3000);

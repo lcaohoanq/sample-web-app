@@ -5,6 +5,8 @@ import { TextFieldChangeEvent } from "@vaadin/text-field";
 import Camera from "Frontend/generated/com/lcaohoanq/samplewebapplication/models/Camera";
 import { Button, Typography } from "@mui/material";
 import { toast } from "react-toastify";
+import { getCookie } from "Frontend/utils/cookiesUtils";
+import { useNavigate } from "react-router-dom";
 
 const CameraManagement: React.FC = () => {
     const [cameras, setCameras] = useState<Camera[]>([]);
@@ -19,12 +21,37 @@ const CameraManagement: React.FC = () => {
     const [deleteCamera, setDeleteCamera] = useState<Camera | null>(null);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
+
+    //check if the user is logged in via get token from cookie
+    const token = getCookie("access_token");
+    // if (!token) {
+    //     navigate('/Login');
+    // }
 
     useEffect(() => {
-        fetchCameras()
-            .then((r) => {})
-            .catch((e) => console.error(e));
-    }, []);
+      const token = getCookie("access_token");
+
+      if (!token) {
+          navigate('/Login'); // Redirect if no token
+          setLoading(false);   // Stop loading state after redirection
+          return;              // Exit effect
+      }
+
+      // Fetch data if the token exists
+      fetchCameras()
+          .then((response) => {
+              // Handle successful response here
+          })
+          .catch((error) => {
+              console.error(error);
+              // Optionally handle error
+          })
+          .finally(() => {
+              setLoading(false); // Stop loading state after fetch
+          });
+  }, [navigate]);
 
     const fetchCameras = async () => {
         const fetchedCameras = await CameraEndpoint.findAll();

@@ -9,8 +9,12 @@ import {
     Button,
     Typography,
     Grid,
+    Grid2,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import { formatCurrency } from "Frontend/utils/currencyUtils";
+import CartView from "./CartView";
+import { CameraCard } from "Frontend/components/CameraCart";
 
 export const config: ViewConfig = {
     menu: { order: 3, icon: "line-awesome/svg/file.svg" },
@@ -36,51 +40,18 @@ const HomeView: React.FC = () => {
     };
 
     return (
-        <div className="container mx-auto px-4 py-8">
-            <Typography variant="h4" component="h1" gutterBottom align="center">
-                Camera Collection
-            </Typography>
-            <Grid container spacing={4}>
-                {cameras.map((camera) => (
-                    <Grid item xs={12} sm={6} md={4} key={camera.id}>
-                        <Card className="shadow-lg">
-                            <CardContent>
-                                <Typography
-                                    variant="h6"
-                                    component="h2"
-                                    gutterBottom
-                                >
-                                    {camera.brand} {camera.model}
-                                </Typography>
-                                <Typography
-                                    variant="body2"
-                                    color="textSecondary"
-                                >
-                                    {camera.description}
-                                </Typography>
-                                <Typography
-                                    variant="h6"
-                                    component="p"
-                                    className="mt-4 text-green-500"
-                                >
-                                    ${camera.price}
-                                </Typography>
-                            </CardContent>
-                            <CardActions>
-                                <Button
-                                    size="small"
-                                    color="primary"
-                                    component={Link}
-                                    to={`/cart/${camera.id}`}
-                                >
-                                    View Details
-                                </Button>
-                            </CardActions>
-                        </Card>
-                    </Grid>
-                ))}
-            </Grid>
-        </div>
+      <div className="container mx-auto px-4 py-8">
+      <Typography variant="h4" component="h1" gutterBottom align="center">
+          Welcome to our Camera Store
+      </Typography>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+          {cameras.map((camera) => (
+              <div key={camera.id} className="flex justify-center">
+              <CameraCard camera={camera} />
+          </div>
+          ))}
+      </div>
+  </div>
     );
 };
 
