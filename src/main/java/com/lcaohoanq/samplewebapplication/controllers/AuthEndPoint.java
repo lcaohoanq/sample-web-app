@@ -11,13 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Endpoint
 @AnonymousAllowed
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/register")
-public class RegisterEndpoint {
+@RequestMapping("${api.prefix}/auth")
+public class AuthEndPoint {
 
-    private final IUserService userService;
+  private final IUserService userService;
 
-    public User register(UserDTO userDTO) {
-        return userService.register(userDTO);
-    }
+  public User login(String username, String password) {
+    return userService.login(username, password);
+  }
+
+  public User register(UserDTO userDTO) {
+    return userService.register(userDTO);
+  }
 
 }

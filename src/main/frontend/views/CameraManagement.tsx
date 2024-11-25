@@ -31,27 +31,27 @@ const CameraManagement: React.FC = () => {
     // }
 
     useEffect(() => {
-      const token = getCookie("access_token");
+        const token = getCookie("access_token");
 
-      if (!token) {
-          navigate('/Login'); // Redirect if no token
-          setLoading(false);   // Stop loading state after redirection
-          return;              // Exit effect
-      }
+        if (!token) {
+            navigate("/Login"); // Redirect if no token
+            setLoading(false); // Stop loading state after redirection
+            return; // Exit effect
+        }
 
-      // Fetch data if the token exists
-      fetchCameras()
-          .then((response) => {
-              // Handle successful response here
-          })
-          .catch((error) => {
-              console.error(error);
-              // Optionally handle error
-          })
-          .finally(() => {
-              setLoading(false); // Stop loading state after fetch
-          });
-  }, [navigate]);
+        // Fetch data if the token exists
+        fetchCameras()
+            .then((response) => {
+                // Handle successful response here
+            })
+            .catch((error) => {
+                console.error(error);
+                // Optionally handle error
+            })
+            .finally(() => {
+                setLoading(false); // Stop loading state after fetch
+            });
+    }, [navigate]);
 
     const fetchCameras = async () => {
         const fetchedCameras = await CameraEndpoint.findAll();

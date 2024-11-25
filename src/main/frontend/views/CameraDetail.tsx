@@ -13,7 +13,6 @@ const CameraDetail: React.FC = () => {
 
     useEffect(() => {
         if (id) {
-
             fetchCameraDetails(id); // Use `id` as a string here
         }
     }, [id]);
@@ -31,12 +30,21 @@ const CameraDetail: React.FC = () => {
     };
 
     if (!camera) {
-        return <LoadingComponent/>;
+        return <LoadingComponent />;
     }
 
     return (
-        <div className="container mx-auto px-4 py-8">
-            <Card className="shadow-lg">
+        <>
+            <Button
+                variant="contained"
+                color="primary"
+                component={Link}
+                sx={{ textDecoration: "none", m: 3 }}
+                to="/Home"
+            >
+                Back to Home
+            </Button>
+            <Card className="shadow-lg flex gap-5 m-3">
                 <CardContent>
                     <Typography variant="h4" component="h1" gutterBottom>
                         {camera.brand} {camera.model}
@@ -44,22 +52,18 @@ const CameraDetail: React.FC = () => {
                     <Typography variant="body1" color="textSecondary" paragraph>
                         {camera.description}
                     </Typography>
+                    <img
+                        src={camera.thumbnail}
+                        alt={camera.model}
+                        className="w-full h-auto"
+                    />
                     <Typography variant="h5" className="text-green-500">
                         ${camera.price}
                     </Typography>
                 </CardContent>
+                <div>Details</div>
             </Card>
-            <div className="mt-4">
-                <Button
-                    variant="contained"
-                    color="primary"
-                    component={Link}
-                    to="/"
-                >
-                    Back to Home
-                </Button>
-            </div>
-        </div>
+        </>
     );
 };
 

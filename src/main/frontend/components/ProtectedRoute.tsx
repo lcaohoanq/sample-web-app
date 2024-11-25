@@ -3,19 +3,19 @@ import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
 interface ProtectedRouteProps {
-  redirectPath?: string;
+    redirectPath?: string;
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
-  redirectPath = "/login",
+    redirectPath = "/login",
 }) => {
-  const token = getCookie("access_token");
+    const token = getCookie("access_token");
 
-  if (!token) {
-    return <Navigate to={redirectPath} replace />;
-  }
+    if (!token) {
+        return <Navigate to={redirectPath} replace />;
+    }
 
-  return <Outlet />;
+    return <Outlet />;
 };
 
 export default ProtectedRoute;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { login as loginService } from "Frontend/generated/LoginEndpoint.js";
+import { login as loginService } from "Frontend/generated/AuthEndPoint.js";
 import { ViewConfig } from "@vaadin/hilla-file-router/types.js";
 import { TextField, Button, Box, Typography, Alert } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
@@ -39,7 +39,7 @@ export default function LoginView() {
             const user = await loginService(data.username, data.password);
 
             if (user) {
-                toast.success(`Welcome, ${user.user_name}!`);
+                toast.success(`Welcome, ${user.email}!`);
                 setCookie("access_token", "access_token", 1);
                 setTimeout(() => {
                     navigate("/Home");
@@ -94,7 +94,7 @@ export default function LoginView() {
                         render={({ field }) => (
                             <TextField
                                 {...field}
-                                label="Username"
+                                label="Email or Phone Number"
                                 variant="outlined"
                                 fullWidth
                                 error={!!errors.username}

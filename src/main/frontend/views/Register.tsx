@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { register as registerService } from "Frontend/generated/RegisterEndpoint.js"; // Use register from RegisterEndpoint
 import { ViewConfig } from "@vaadin/hilla-file-router/types.js";
+import { register as registerService } from "Frontend/generated/AuthEndPoint.js";
 import { Alert, Box, Button, TextField, Typography } from "@mui/material";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -55,7 +55,7 @@ export default function RegisterView() {
 
             if (user) {
                 toast.success(
-                    `Registration successful, welcome ${user.user_name}!`,
+                    `Registration successful, welcome ${user.email}!`,
                 );
                 setTimeout(() => {
                     navigate("/Login");

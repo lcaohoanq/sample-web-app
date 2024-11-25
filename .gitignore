@@ -7,3 +7,5 @@ vite.generated.ts
 .env
 *.bak
 package-lock.json
+logs/application.log
+redis-data/

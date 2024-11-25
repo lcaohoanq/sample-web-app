@@ -25,6 +25,7 @@
         "@emotion/react": "^11.13.3",
         "@emotion/styled": "^11.13.0",
         "@hookform/resolvers": "^3.9.0",
+        "@mui/icons-material": "^6.0.2",
         "@mui/material": "^6.1.3",
         "@polymer/polymer": "3.5.1",
         "@vaadin/bundles": "24.4.10",
@@ -80,6 +81,7 @@
         "@vitejs/plugin-react": "4.3.1",
         "async": "3.2.6",
         "autoprefixer": "^10.4.20",
+        "classnames": "^2.3.1",
         "eslint-config-prettier": "^9.1.0",
         "eslint-import-resolver-alias": "^1.1.2",
         "eslint-import-resolver-typescript": "^3.6.1",
@@ -167,7 +169,7 @@
             "workbox-core": "7.1.0",
             "workbox-precaching": "7.1.0"
         },
-        "hash": "61798978b569e5512d05ddd5f5bf5dced319be1ea8832e2ea21c25bfadc10ede"
+        "hash": "4fc68a0b5c6715f6652292110426c7ca3bd21e7d83b5e4b90d8604650a020e64"
     },
     "overrides": {
         "@vaadin/bundles": "$@vaadin/bundles",
@@ -215,6 +217,7 @@
         "react-hook-form": "$react-hook-form",
         "react-toastify": "$react-toastify",
         "yup": "$yup",
-        "classnames": "$classnames"
+        "classnames": "$classnames",
+        "@mui/icons-material": "$@mui/icons-material"
     }
 }

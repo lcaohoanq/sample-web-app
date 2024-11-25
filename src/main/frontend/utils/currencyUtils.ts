@@ -7,18 +7,18 @@
  * @returns {string} - The formatted currency string.
  */
 export const formatCurrency = (
-  value: number | null | undefined,
-  currency: string = "USD",
-  locale: string = "en-US",
+    value: number | null | undefined,
+    currency: string = "USD",
+    locale: string = "en-US",
 ): string => {
-  if (value == null) return ""; // Return an empty string for null or undefined values
+    if (value == null) return ""; // Return an empty string for null or undefined values
 
-  const options: Intl.NumberFormatOptions = {
-    style: "currency" as const, // Use 'as const' to ensure TypeScript recognizes it as a valid style
-    currency,
-    minimumFractionDigits: 0, // No decimal places
-    maximumFractionDigits: 0, // No decimal places
-  };
+    const options: Intl.NumberFormatOptions = {
+        style: "currency" as const, // Use 'as const' to ensure TypeScript recognizes it as a valid style
+        currency,
+        minimumFractionDigits: 0, // No decimal places
+        maximumFractionDigits: 0, // No decimal places
+    };
 
-  return new Intl.NumberFormat(locale, options).format(value);
+    return new Intl.NumberFormat(locale, options).format(value);
 };

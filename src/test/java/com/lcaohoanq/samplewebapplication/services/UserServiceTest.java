@@ -29,7 +29,7 @@ class UserServiceTest {
   }
 
   @Test
-  void delete() {
+  void softDelete() {
   }
 
   @Test

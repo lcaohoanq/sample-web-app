@@ -30,16 +30,16 @@ services:
         depends_on:
             - postgres
 
-    #  redis-container:
-    #    image: docker.io/redis:7.2.3
-    #    container_name: redis_web_development
-    #    restart: always
-    #    ports:
-    #      - "6379:6379"
-    #    volumes:
-    #      - ./redis-data:/data # Mount a volume for Redis data persistence
-    #    networks:
-    #      - dev_networks
+    redis-container:
+        image: docker.io/redis:7.2.3
+        container_name: redis_web_development
+        restart: always
+        ports:
+            - "6379:6379"
+        volumes:
+            - ./redis-data:/data # Mount a volume for Redis data persistence
+        networks:
+            - dev_networks
 
 #    prometheus:
 #        image: prom/prometheus
@@ -54,9 +54,9 @@ services:
 #        extra_hosts:
 #            - "host.docker.internal:host-gateway"
 
-    # connection Prometheus server URL
-    # http://prometheus:9090(prometheus is the service name)
-    # not use localhost because localhost refer to grafana itself
+# connection Prometheus server URL
+# http://prometheus:9090(prometheus is the service name)
+# not use localhost because localhost refer to grafana itself
 #    grafana:
 #        image: grafana/grafana
 #        container_name: grafana_web_development

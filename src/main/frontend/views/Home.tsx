@@ -40,18 +40,18 @@ const HomeView: React.FC = () => {
     };
 
     return (
-      <div className="container mx-auto px-4 py-8">
-      <Typography variant="h4" component="h1" gutterBottom align="center">
-          Welcome to our Camera Store
-      </Typography>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
-          {cameras.map((camera) => (
-              <div key={camera.id} className="flex justify-center">
-              <CameraCard camera={camera} />
-          </div>
-          ))}
-      </div>
-  </div>
+        <div className="container mx-auto px-4 py-8">
+            <Typography variant="h4" component="h1" gutterBottom align="center">
+                Welcome to our Camera Store
+            </Typography>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+                {cameras.map((camera) => (
+                    <div key={camera.id} className="flex justify-center">
+                        <CameraCard camera={camera} />
+                    </div>
+                ))}
+            </div>
+        </div>
     );
 };
 
