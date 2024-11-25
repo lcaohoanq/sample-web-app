@@ -30,7 +30,7 @@ export const CameraCard: React.FC<CameraProps> = ({ camera }) => {
         </div>
         <div className="p-4 bg-blue-200 border-t border-gray-200">
           <Link
-            to={`/cart/${camera.id}`}
+            to={`/cameras/${camera.id}`}
             className="block w-full text-center hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition duration-300"
           >
             View Details

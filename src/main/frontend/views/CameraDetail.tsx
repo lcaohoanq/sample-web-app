@@ -4,13 +4,16 @@ import Camera from "Frontend/generated/com/lcaohoanq/samplewebapplication/models
 import { CameraEndpoint } from "Frontend/generated/endpoints";
 import { Typography, Card, CardContent, Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import { LoadingComponent } from "Frontend/components/LoadingComponent";
 
-const CartDetailView: React.FC = () => {
+const CameraDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const [camera, setCamera] = useState<Camera | undefined>(undefined);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (id) {
+
             fetchCameraDetails(id); // Use `id` as a string here
         }
     }, [id]);
@@ -28,7 +31,7 @@ const CartDetailView: React.FC = () => {
     };
 
     if (!camera) {
-        return <div>Loading...</div>;
+        return <LoadingComponent/>;
     }
 
     return (
@@ -60,4 +63,4 @@ const CartDetailView: React.FC = () => {
     );
 };
 
-export default CartDetailView;
+export default CameraDetail;

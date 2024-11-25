@@ -5,10 +5,10 @@ import "./main.css";
 import LoginView from "Frontend/views/Login";
 import RegisterView from "Frontend/views/Register";
 import HomeView from "Frontend/views/Home";
-import CartDetailView from "Frontend/views/CartDetailView";
 import { ToastContainer } from "react-toastify";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Logout from "./views/Logout";
+import CameraDetail from "Frontend/views/CameraDetail";
 // Import other views as needed
 
 const App: React.FC = () => {
@@ -18,10 +18,9 @@ const App: React.FC = () => {
             {/* Add other routes as needed */}
             <Route path="/login" element={<LoginView />} />
             <Route path="/register" element={<RegisterView />} />
-            <Route path="/cart" element={<CameraManagement />} />
-            <Route path="/cart/:id" element={<CartDetailView />} />
+            <Route path="/cameras/:id" element={<CameraDetail />} />
             <Route element={<ProtectedRoute/>}>
-              <Route path="/camera_management" element={<CameraManagement />} />
+              <Route path="/cameras/manage" element={<CameraManagement />} />
               <Route path="/logout" element={<Logout />} />
             </Route>
 

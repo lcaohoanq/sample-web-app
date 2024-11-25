@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AnonymousAllowed
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/cameras")
+@RequestMapping("/api/v1/cameras")
 public class CameraEndpoint {
     private final ICameraService cameraService;
 
